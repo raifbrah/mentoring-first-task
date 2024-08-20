@@ -1,0 +1,19 @@
+.cards_container {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 3px;
+  background: #f7f7f7;
+}
+.card_title {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
