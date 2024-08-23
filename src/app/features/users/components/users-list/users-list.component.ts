@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UsersApiService } from '../../services/users-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { IUser } from '../../models/user.interface';
-import { Observable } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-users-list',
@@ -13,17 +14,25 @@ import { Observable } from 'rxjs';
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
 })
-export class UsersListComponent implements OnInit {
-  constructor(private usersApiService: UsersApiService) {
-    this.usersApiService = this.usersApiService;
-  }
+export class UsersListComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
 
-  users$!: Observable<IUser[]>;
+  constructor(
+    private readonly usersApiService: UsersApiService,
+    public readonly usersService: UsersService,
+  ) {}
 
   ngOnInit(): void {
-    this.users$ = this.usersApiService.getUsers();
     this.usersApiService
       .getUsers()
-      .subscribe((response) => console.log(response));
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((usersData: IUser[]) => {
+        this.usersService.addEditUsers(usersData)
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 }

@@ -1,7 +1,7 @@
 <p>users-list works!</p>
 
 <div class="cards_container">
-  <div *ngFor="let user of users$ | async" class="card">
+  <div *ngFor="let user of usersService.users" class="card">
     <div class="card_title card_item">
       {{ user.name }}
     </div>
