@@ -1,11 +1,10 @@
 <p>users-list works!</p>
-
-<div class="cards_container">
-  <div *ngFor="let user of usersService.users" class="card">
-    <div class="card_title card_item">
-      {{ user.name }}
-    </div>
-    <div class="card_item">Email: {{ user.email }}</div>
-    <div class="card_item">Phone: {{ user.phone }}</div>
-  </div>
+<div
+  class="user-cards-container"
+>
+  <app-user-card
+    *ngFor="let user of usersService.users"
+    class="app-user-card"
+    [user]="user"
+  ></app-user-card>
 </div>

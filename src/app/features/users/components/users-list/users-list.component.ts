@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UsersApiService } from '../../services/users-api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AsyncPipe, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { IUser } from '../../models/user.interface';
 import { Subject, takeUntil } from 'rxjs';
 import { UsersService } from '../../services/users.service';
+import { UserCardComponent } from "../user-card/user-card.component";
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [HttpClientModule, NgFor, AsyncPipe],
+  imports: [HttpClientModule, NgFor, UserCardComponent],
   providers: [UsersApiService],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
