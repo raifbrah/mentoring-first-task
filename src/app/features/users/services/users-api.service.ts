@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 import { IUser } from '../models/user.interface';
 
@@ -7,7 +7,7 @@ import { IUser } from '../models/user.interface';
   providedIn: 'root',
 })
 export class UsersApiService {
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient)
 
   getUsers(): Observable<IUser[]> {
     return this.http

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UsersApiService } from '../../services/users-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AsyncPipe, NgFor } from '@angular/common';
@@ -14,9 +14,7 @@ import { UserCardComponent } from "../user-card/user-card.component";
   styleUrl: './users-list.component.scss',
 })
 export class UsersListComponent implements OnInit {
-  constructor(
-    public readonly usersService: UsersService,
-  ) {}
+  public readonly usersService = inject(UsersService)
 
   ngOnInit(): void {
     this.usersService.loadUsers()

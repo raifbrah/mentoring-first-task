@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import { IUser } from '../models/user.interface';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { UsersApiService } from './users-api.service';
@@ -12,7 +12,7 @@ export class UsersService implements OnDestroy {
   private readonly usersSubject$ = new BehaviorSubject<IUser[]>([]); // Создали реактивное состояние
   public readonly users$ = this.usersSubject$.asObservable();
 
-  constructor(private readonly usersApiService: UsersApiService) {}
+  private readonly usersApiService = inject(UsersApiService)
 
   addEditUser(user: IUser) {
     if (user.id) {
