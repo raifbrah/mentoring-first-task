@@ -3,7 +3,7 @@
   class="user-cards-container"
 >
   <app-user-card
-    *ngFor="let user of usersService.users"
+    *ngFor="let user of usersService.users$| async"
     class="app-user-card"
     [user]="user"
   ></app-user-card>
