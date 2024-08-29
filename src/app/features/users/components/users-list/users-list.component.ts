@@ -16,6 +16,10 @@ import { UserCardComponent } from "../user-card/user-card.component";
 export class UsersListComponent implements OnInit {
   public readonly usersService = inject(UsersService)
 
+  deleteUser(userId: number) {
+    this.usersService.deleteUser(userId)
+  }
+
   ngOnInit(): void {
     this.usersService.loadUsers()
   }

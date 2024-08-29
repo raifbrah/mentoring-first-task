@@ -34,6 +34,14 @@ export class UsersService implements OnDestroy {
     }
   }
 
+  deleteUser(userId: number) {
+    this.usersSubject$.next(
+      this.usersSubject$.value.filter(filterUser => {
+        return filterUser.id !== userId
+      })
+    )
+  }
+
   loadUsers() {
     this.usersApiService
       .getUsers()

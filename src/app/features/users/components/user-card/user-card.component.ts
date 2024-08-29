@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../../models/user.interface';
 import { NgFor } from '@angular/common';
 
@@ -11,4 +11,9 @@ import { NgFor } from '@angular/common';
 })
 export class UserCardComponent {
   @Input() user!: IUser;
+  @Output() deleteUserEvent = new EventEmitter<number>();
+
+  deleteUser() {
+    this.deleteUserEvent.emit(this.user.id)
+  }
 }
