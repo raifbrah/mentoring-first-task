@@ -1,5 +1,7 @@
-<nav class="nav-bar">
-  <a routerLink="/">Home</a>
-  <a routerLink="/users">Users</a>
-</nav>
-<router-outlet></router-outlet>
+<mat-toolbar class="nav-bar wrapper">
+  <a mat-button routerLink="/" >Home</a>
+  <a mat-button routerLink="/users">Users</a>
+</mat-toolbar>
+<div class="wrapper">
+  <router-outlet></router-outlet>
+</div>
