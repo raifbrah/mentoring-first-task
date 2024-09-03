@@ -15,8 +15,13 @@ import {MatCardModule} from '@angular/material/card';
 export class UserCardComponent {
   @Input() user!: IUser;
   @Output() deleteUserEvent = new EventEmitter<number>();
+  @Output() editUserEvent = new EventEmitter<IUser>();
 
   deleteUser() {
     this.deleteUserEvent.emit(this.user.id)
+  }
+
+  editUser() {
+    this.editUserEvent.emit(this.user)
   }
 }

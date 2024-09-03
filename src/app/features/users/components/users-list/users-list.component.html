@@ -1,8 +1,13 @@
 <div class="user-cards-container">
+  <button (click)="addEditUser()" mat-flat-button color="primary">
+    Добавить пользователя
+  </button>
+
   <app-user-card
     *ngFor="let user of usersService.users$| async"
     class="app-user-card"
     [user]="user"
     (deleteUserEvent)="deleteUser($event)"
+    (editUserEvent)="addEditUser($event)"
   ></app-user-card>
 </div>

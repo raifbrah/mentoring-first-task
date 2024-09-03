@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Dialog with elements</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="userCardForm" class="create-edit-user_form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="John" type="text" formControlName="name" />
+      <mat-error *ngIf="userCardForm.get('name')?.invalid"
+        >Обязательное поле</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="john@gmail.com"
+        type="email"
+        formControlName="email"
+      />
+      <mat-error *ngIf="userCardForm.get('email')?.invalid"
+        >Некоррекнтый email</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        placeholder="johnbro"
+        type="text"
+        formControlName="username"
+      />
+      <mat-error *ngIf="userCardForm.get('username')?.invalid"
+        >Обязательное поле</mat-error
+      >
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  @if (userData) {
+    <button (click)="addEditUser()" [disabled]="userCardForm.invalid" mat-button>
+      Save
+    </button>
+  } @else {
+    <button (click)="addEditUser()" [disabled]="userCardForm.invalid" mat-button>
+      add
+    </button>
+  }
+</mat-dialog-actions>

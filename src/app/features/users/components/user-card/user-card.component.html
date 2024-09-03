@@ -2,12 +2,18 @@
   <mat-card-header>
     <mat-card-title>{{ user.name }}</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
     <div>Username: {{ user.username }}</div>
     <div>Email: {{ user.email }}</div>
-    <div>User ID: {{ user.id }}</div>
+    <div>ID: {{ user.id }}</div>
   </mat-card-content>
-  <mat-card-actions>
+
+  <mat-card-actions class="mat-card-actions">
+    <button mat-flat-button color="primary" (click)="editUser()">
+      <mat-icon>create</mat-icon>
+      Изменить
+    </button>
     <button mat-flat-button color="warn" (click)="deleteUser()">
       <mat-icon>delete</mat-icon>
       Удалить
